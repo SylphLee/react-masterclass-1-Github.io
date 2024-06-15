@@ -1,9 +1,9 @@
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import Router from "./Router";
-import { ReactQueryDevtools } from "react-query/devtools";
-import { dark, light, fontSizes, fontWeights } from "./theme";
+import { dark, light, } from "./theme";
 import { useDarkMode } from "./modetoggle/DarkMode";
 import Toggle from "./modetoggle/Toggle";
+import Home from "./modetoggle/home";
 
 const GlobaStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300&display=swap');
@@ -74,19 +74,19 @@ a {
 }
 `;
 
-
 function App() {
-  const [themeMode, toggleTheme] = useDarkMode();
+  const [thememode, toggleTheme] = useDarkMode();
   const theme =
-    themeMode === "light" ? { mode: light, fontSizes, fontWeights } : { mode: dark, fontSizes, fontWeights };
+    thememode === "light" ? { mode: light} : { mode: dark};
   return (
     <>
-      <ThemeProvider theme={theme}>
-      <Toggle themeMode={themeMode} toggleTheme={toggleTheme} />
-      <Backgound>
-      <GlobaStyle />
-      <Router /> 
-      </Backgound>     
+      <ThemeProvider theme={theme}>        
+        <Toggle thememode={thememode} toggleTheme={toggleTheme} />
+        <Home />
+        <Backgound>
+          <GlobaStyle />
+          <Router />
+        </Backgound>
       </ThemeProvider>
     </>
   );
@@ -94,6 +94,7 @@ function App() {
 
 const Backgound = styled.div`
   background-color: ${({ theme }) => theme.mode.mainBackground};
+  height: 100vh;
 `;
 
 export default App;

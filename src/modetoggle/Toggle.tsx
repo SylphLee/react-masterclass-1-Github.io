@@ -4,18 +4,18 @@ import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import NightsStayIcon from "@material-ui/icons/NightsStay";
 
 interface IToggle {
-  themeMode: string;
+  thememode: string;
   toggleTheme: () => void;
 }
 
 interface IWrapper {
-  themeMode: string;
+  thememode: string;
 }
 
-const Toggle = ({ themeMode, toggleTheme }: IToggle) => {
+const Toggle = ({ thememode, toggleTheme }: IToggle) => {
   return (
     <>
-      <Wrapper onClick={toggleTheme} themeMode={themeMode}>
+      <Wrapper onClick={toggleTheme} thememode={thememode}>
       <WbSunnyIcon />
       <NightsStayIcon />
       </Wrapper>
@@ -40,16 +40,16 @@ const Wrapper = styled.button<IWrapper>`
   z-index: 1;
   width: 4rem;
   height: 2rem;
-  bottom: 2rem;
-  right: 1rem;
+  top: 3rem;
+  right: 26rem;
   svg {
     color: ${({ theme }) => theme.mode.themeIcon};
     &:first-child {
-      transform: ${({ themeMode }) => (themeMode === "light" ? "translateY(0)" : "translateY(2rem)")};
+      transform: ${({ thememode }) => (thememode === "light" ? "translateY(0)" : "translateY(2rem)")};
       transition: background 0.25s ease 2s;
     }
     &:nth-child(2) {
-      transform: ${({ themeMode }) => (themeMode === "dark" ? "translateY(0)" : "translateY(-2rem)")};
+      transform: ${({ thememode }) => (thememode === "dark" ? "translateY(0)" : "translateY(-2rem)")};
       transition: background 0.25s ease 2s;
     }
   }

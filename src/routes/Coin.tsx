@@ -10,7 +10,7 @@ import { Helmet } from "react-helmet";
 
 const Title = styled.h1`
   font-size: 48px;
-  color: ${(props) => props.theme.accentColor};
+  color: ${({ theme }) => theme.mode.primaryText};
 `;
 
 const Loader = styled.span`
@@ -44,6 +44,7 @@ const OverviewItem = styled.div`
   flex-direction: column;
   align-items: center;
   width: 33%;
+  color: ${({ theme }) => theme.mode.secondaryText};
   span:first-child {
     font-size: 10px;
     font-weight: 400;
@@ -54,6 +55,7 @@ const OverviewItem = styled.div`
 
 const Description = styled.p`
   margin: 20px 0px;
+  color: ${({ theme }) => theme.mode.Description};
 `;
 
 const Tabs = styled.div`
@@ -70,7 +72,7 @@ const Tab = styled.span<{ isActive: boolean }>`
   font-weight: 400;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
-  color: ${(props) => props.isActive ? props.theme.accentColor : props.theme.textColor};
+  color: ${(props) => props.isActive ? ({ theme }) => theme.mode.primaryText : ({ theme }) => theme.mode.secondaryText};  
   a {
     padding: 7px 0px;
     display: block;
