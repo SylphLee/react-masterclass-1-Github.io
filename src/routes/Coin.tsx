@@ -6,6 +6,8 @@ import Price from "./Price";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { useQuery } from 'react-query'
 import { Helmet } from "react-helmet";
+import Home from "../modetoggle/home";
+
 
 
 const Title = styled.h1`
@@ -158,6 +160,10 @@ function Coin() {
         <title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</title>
       </Helmet>
       <Header>
+        
+        <Route path="/">
+          <Home />
+        </Route>
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>

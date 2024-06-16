@@ -81,8 +81,7 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>        
-        <Toggle thememode={thememode} toggleTheme={toggleTheme} />
-        <Home />
+        <Toggle thememode={thememode} toggleTheme={toggleTheme} />        
         <Backgound>
           <GlobaStyle />
           <Router />
