@@ -56,6 +56,7 @@
     "react-query": "^3.39.3",
     "react-refresh": "^0.11.0",
     "react-router-dom": "^5.3.4",
+    "recoil": "^0.7.7",
     "resolve": "^1.20.0",
     "resolve-url-loader": "^4.0.0",
     "sass-loader": "^12.3.0",
@@ -75,11 +76,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "test": "node scripts/test.js"
   },
-  "homepage": "https://sylphlee.github.io/react-masterclass-1-Github.io/",
   "eslintConfig": {
     "extends": [
       "react-app",

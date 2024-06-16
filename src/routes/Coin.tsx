@@ -6,13 +6,11 @@ import Price from "./Price";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
 import { useQuery } from 'react-query'
 import { Helmet } from "react-helmet";
-import Home from "../modetoggle/home";
-
 
 
 const Title = styled.h1`
   font-size: 48px;
-  color: ${({ theme }) => theme.mode.primaryText};
+  color: ${(props) => props.theme.accentColor};
 `;
 
 const Loader = styled.span`
@@ -46,7 +44,6 @@ const OverviewItem = styled.div`
   flex-direction: column;
   align-items: center;
   width: 33%;
-  color: ${({ theme }) => theme.mode.secondaryText};
   span:first-child {
     font-size: 10px;
     font-weight: 400;
@@ -57,7 +54,6 @@ const OverviewItem = styled.div`
 
 const Description = styled.p`
   margin: 20px 0px;
-  color: ${({ theme }) => theme.mode.Description};
 `;
 
 const Tabs = styled.div`
@@ -74,7 +70,7 @@ const Tab = styled.span<{ isActive: boolean }>`
   font-weight: 400;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
-  color: ${(props) => props.isActive ? ({ theme }) => theme.mode.primaryText : ({ theme }) => theme.mode.secondaryText};  
+  color: ${(props) => props.isActive ? props.theme.accentColor : props.theme.textColor};
   a {
     padding: 7px 0px;
     display: block;
@@ -144,6 +140,8 @@ interface PriceData {
   };
 }
 
+interface ICoinProps {}
+
 function Coin() {
   const { coinId } = useParams<RouteParams>();
   const { state } = useLocation<RouteState>();
@@ -160,10 +158,6 @@ function Coin() {
         <title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</title>
       </Helmet>
       <Header>
-        
-        <Route path="/">
-          <Home />
-        </Route>
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>
@@ -183,7 +177,7 @@ function Coin() {
             </OverviewItem>
             <OverviewItem>
               <span>Price:</span>
-              <span>${tickersData?.quotes.USD.price.toFixed(3)}</span>
+              <span>${tickersData?.quotes?.USD?.price?.toFixed(3)}</span>
             </OverviewItem>
           </Overview>
           <Description>{infoData?.description}</Description>
