@@ -153,17 +153,17 @@ function Coin() {
   const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(["info", coinId], () => fetchCoinInfo(coinId));
   const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(["tickers", coinId], () => fetchCoinTickers(coinId), { refetchInterval: 5000, });
 
-  const loading = infoLoading || tickersLoading;
+  const loading = infoLoading || tickersLoading;  
+
   return (
     <Container>
       <Helmet>
         <title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</title>
       </Helmet>
-      <Header>
-        
-        <Route path="/">
+      <Header>        
+        <Link to = {`/`}>
           <Home />
-        </Route>
+        </Link>
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>
