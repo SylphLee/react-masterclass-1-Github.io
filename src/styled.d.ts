@@ -1,10 +1,19 @@
 import 'styled-components';
 
-declare module 'styled-components' {
+declare module "styled-components" {
   export interface DefaultTheme {
-    textColor: string;
-    bgColor: string;
-    accentColor: string;
-    cardBgColor: string;
+    mode: {
+      mainBackground: string;
+      primaryText: string;
+      secondaryText: string;
+      disable: string;
+      border: string;
+      divider: string;
+      boxColor: string;
+      background: string;
+      themeIcon: string;
+      linkColor: string;
+      Description:string,
+    };
   }
 }

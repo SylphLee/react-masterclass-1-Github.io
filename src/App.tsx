@@ -1,10 +1,9 @@
-import { ThemeProvider, createGlobalStyle } from "styled-components";
+import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import Router from "./Router";
-import { ReactQueryDevtools } from "react-query/devtools";
-import { datkTheme, lightTheme } from "./theme";
-import { useState } from "react";
-import { useRecoilValue } from "recoil";
-import { isDarkAtom } from "./atoms";
+import { dark, light, } from "./theme";
+import { useDarkMode } from "./modetoggle/DarkMode";
+import Toggle from "./modetoggle/Toggle";
+import Home from "./modetoggle/home";
 
 const GlobaStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300&display=swap');
@@ -76,16 +75,25 @@ a {
 `;
 
 function App() {
-  const isDark = useRecoilValue(isDarkAtom);
+  const [thememode, toggleTheme] = useDarkMode();
+  const theme =
+    thememode === "light" ? { mode: light} : { mode: dark};
   return (
     <>
-      <ThemeProvider theme={isDark ? datkTheme : lightTheme}>        
-        <GlobaStyle />
-        <Router />
-        <ReactQueryDevtools initialIsOpen={true} />
+      <ThemeProvider theme={theme}>        
+        <Toggle thememode={thememode} toggleTheme={toggleTheme} />        
+        <Backgound>
+          <GlobaStyle />
+          <Router />
+        </Backgound>
       </ThemeProvider>
     </>
   );
 }
+
+const Backgound = styled.div`
+  background-color: ${({ theme }) => theme.mode.mainBackground};
+  height: 100vh;
+`;
 
 export default App;

@@ -1,12 +1,11 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Coins from "./routes/Coins";
 import Coin from "./routes/Coin";
+import Home from "./modetoggle/home";
 
-interface IRouterProps {}
-
-function Router({}: IRouterProps) {
+function Router() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path="/:coinId">
           <Coin />
